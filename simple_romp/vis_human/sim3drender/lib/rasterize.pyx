@@ -1,5 +1,7 @@
-import numpy as np
+# cython: language_level=3
+# distutils: language = c++
 cimport numpy as np
+np.import_array()
 # from libcpp.string cimport string
 cimport cython
 from libcpp cimport bool

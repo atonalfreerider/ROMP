@@ -1,0 +1,31 @@
+gcc v 10 (not 11)
+lap depends on python 3.9
+
+conda create -n trace python 3.9
+
+pip install -r requirements.txt
+
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+reinstall lap, joblib, cython
+pip install pyrender
+pip install matplotlib
+pip install imgaug
+
+python setup_trace.py install
+
+
+
+
+romp.prepare_smpl -source_dir=/home/john/Desktop/3D-Pose/ROMP/simple_romp/smpl_model_data
+
+results go to ~/.romp/SMPLA_NEUTRAL,pth
+
+trace2/main.py gets weird build artifacts in source in miniconda env lib. overwrite from romp source
+
+# current code does not support inference with multiple GPUs.
+CUDA_VISIBLE_DEVICES=0 trace2 -i /home/john/Downloads/carlos-aline-spin-cam2.mp4 --subject_num=2
+
+
+CUDA_VISIBLE_DEVICES=0 trace2 -i /home/john/Downloads/carlos-aline-spin-cam2.mp4 --subject_num=2 -o /home/john/trace_output --center_thresh 0.1 --show --save_video --smpl_path=/home/john/Desktop/3D-Pose/ROMP/simple_romp/smpl_model_data/SMPL_NEUTRAL_pytorch.pkl
+

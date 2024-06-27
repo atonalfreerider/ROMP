@@ -56,12 +56,14 @@ setuptools.setup(
         'trace2.evaluation.TrackEval.trackeval.baselines',
         'trace2.utils',
         'tracker'],
-    ext_modules=cythonize([Extension("Sim3DR_Cython",
-                           sources=["vis_human/sim3drender/lib/rasterize.pyx",
-                                    "vis_human/sim3drender/lib/rasterize_kernel.cpp"],
-                           language='c++',
-                           include_dirs=[numpy.get_include()],
-                           extra_compile_args=["-std=c++11"])]),
+    ext_modules=cythonize([
+        Extension("Sim3DR_Cython",
+                  sources=["vis_human/sim3drender/lib/rasterize.pyx",
+                           "vis_human/sim3drender/lib/rasterize_kernel.cpp"],
+                  language='c++',
+                  include_dirs=[numpy.get_include()],
+                  extra_compile_args=["-std=c++11", "-D NPY_NO_DEPRECATED_API=NPY_1_7_API_VERSION"])
+    ], language_level=3),
     include_package_data=True,
     classifiers=[
          "Programming Language :: Python :: 3",
